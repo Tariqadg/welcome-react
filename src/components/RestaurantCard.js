@@ -1,7 +1,7 @@
 import { CDN_URL } from "../utils/constants";
 const RestaurantCard=(props)=>{
     const{resData}=(props);
-     console.log(resData.info.sla.deliveryTime);
+    
     const {
         cloudinaryImageId,
          name,
