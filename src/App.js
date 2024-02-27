@@ -6,6 +6,7 @@ import Body from "./components/Body.js";
 
 
 const AppLayout=()=>(<div>
+ 
    <Header />
    <Body/>
 </div>)
