@@ -1,6 +1,6 @@
 import { LOGO_URL } from "../utils/constants";
 import { useState } from "react";
-import {loginPage} from "./Login";
+
 
 const Header=()=>{
 
@@ -22,7 +22,7 @@ return(
         <button className="login-btn" 
          onClick={
             
-            ()=>{ {console.log(<loginPage />)} btnName==="login"?setbtnName("logout"):setbtnName("login")
+            ()=>{  btnName==="login"?setbtnName("logout"):setbtnName("login")
             
         
     }
