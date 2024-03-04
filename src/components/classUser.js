@@ -17,9 +17,9 @@ class UserClass extends React.Component {
     const { name, location } = this.props;
     const { count1 } = this.state;
     return (
-      <div className="user-card">
-        <h1>count1:{count1}</h1>
-        <button
+      <div className="user-card text-center rounded-xl w-[600px]  ">
+        <h1 className=" m-4 p-4 font-bold text-2xl">count1:{count1}</h1>
+        <button className="m-4 p-4 bg-green-100 rounded-lg hover:bg-green-300 font-bold text-2xl"
           onClick={() => {
             this.setState({
               count1: this.state.count1 + 1,
@@ -28,9 +28,9 @@ class UserClass extends React.Component {
         >
           clickincreasecount
         </button>
-        <h1>Name:{name}</h1>
-        <h1>location:{location}</h1>
-        <h1>contact</h1>
+        <h1 className=" m-4 p-4 font-bold text-2xl">Name:{name}</h1>
+        <h1 className=" m-4 p-4 font-bold text-2xl">location:{location}</h1>
+        <h1 className=" m-4 p-4 font-bold text-2xl">contact</h1>
       </div>
     );
   }

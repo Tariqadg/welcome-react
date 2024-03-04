@@ -1,16 +1,18 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard,{withvegLabel} from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import {RES_DATA_API} from "../utils/constants"
 import useOnlineStatus from "../utils/useOnlineStatus";
 
+
 const Body = () => {
   const [newList, setnewList] = useState([]);
   const [filterednewList, setfilterednewList] = useState([]);
-
+  // console.log(newList)
   const [searchText, setsearchText] = useState("");
-
+  const RestaurantCardveg=withvegLabel(RestaurantCard)
+  
   useEffect(() => {
     fetchData();
   }, []);
@@ -19,13 +21,18 @@ const Body = () => {
     const data = await fetch(RES_DATA_API);
 
     const json = await data.json();
+
     setnewList(
       json.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+    // console.log(newList)
     setfilterednewList(
       json.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+    
   };
+
+
   const onlineStatus=useOnlineStatus();
 
   if (onlineStatus===false)
@@ -33,50 +40,55 @@ const Body = () => {
   <h1> Looks like you are Offline!!!! check your internet connectivity..... </h1>)
     
   
-
+  // console.log(newList)
   return newList.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body">
-      <div className="filter">
-        <div className="filter.search">
+    <div className="Body">
+      <div className="filter flex ">
+        <div className="search m-4 p-4">
           <input
             type="text"
+            className=" border border-solid border-black"
             value={searchText}
             onChange={(e) => setsearchText(e.target.value)}
           />
-          <button
+          < button className="px-4 py-2 bg-green-100 m-4 rounded-lg hover:bg-green-200"
             onClick={() => {
               const filteredRestaurant = newList.filter((res) =>
                 res?.info?.name.toLowerCase().includes(searchText.toLowerCase())
               );
               setfilterednewList(filteredRestaurant);
             }}
-          >
-            search
-          </button>
+          > search</button>
         </div>
-
-        <button
-          className="filter.btn"
+        <div className="search m-4 p-4 flex items-center">
+        <button 
+          className="px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 "
           onClick={() => {
             const filteredList = newList.filter(
               (res) => res?.info?.avgRating > 4.3
             );
             setfilterednewList(filteredList);
           }}
-        >
-          Top Rated Restaurant
+        >Top Rated Restaurant
         </button>
+
+        </div>
+
+        
       </div>
-      <div className="res-container">
+      <div className="mx-40 flex flex-wrap  ">
         {filterednewList.map((restaurant) => (
           <Link
             key={restaurant.info.id}
-            to={"/restaurants/" + restaurant.info.id}
-          >
-            <RestaurantCard resData={restaurant} />
+            to={"/restaurants/" + restaurant?.info?.id}>
+             {restaurant.info.veg ? (<RestaurantCardveg resData={restaurant}/>) : (
+            <RestaurantCard resData={restaurant} />)
+            }
+
           </Link>
+          
         ))}
       </div>
     </div>
