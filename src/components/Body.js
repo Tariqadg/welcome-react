@@ -1,9 +1,10 @@
 import RestaurantCard,{withvegLabel} from "./RestaurantCard";
-import { useState, useEffect } from "react";
+import { useState, useEffect,useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import {RES_DATA_API} from "../utils/constants"
 import useOnlineStatus from "../utils/useOnlineStatus";
+import userContext from "../utils/UserContext";
 
 
 const Body = () => {
@@ -39,7 +40,7 @@ const Body = () => {
   return(
   <h1> Looks like you are Offline!!!! check your internet connectivity..... </h1>)
     
-  
+  const {loggedinuser,setuserName}=useContext(userContext);
   // console.log(newList)
   return newList.length === 0 ? (
     <Shimmer />
@@ -73,6 +74,19 @@ const Body = () => {
           }}
         >Top Rated Restaurant
         </button>
+
+        </div>
+        <div className="search m-4 p-4 flex items-center">
+        <label className="font-bold">Username:</label>
+        <input className=" mx-2 px-1 border border-solid border-black"
+        value={loggedinuser}
+        onChange={(e)=>{setuserName(e.target.value)}} >
+
+        </input>
+        <button onClick={()=>{
+          
+        }
+        }>Enter</button>
 
         </div>
 
