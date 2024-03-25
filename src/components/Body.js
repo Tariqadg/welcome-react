@@ -41,8 +41,10 @@ const Body = () => {
   <h1> Looks like you are Offline!!!! check your internet connectivity..... </h1>)
     
   const {loggedinuser,setuserName}=useContext(userContext);
-  // console.log(newList)
-  return newList.length === 0 ? (
+  console.log(newList)
+  
+
+  return newList?.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="Body">
@@ -50,7 +52,7 @@ const Body = () => {
         <div className="search m-4 p-4">
           <input
             type="text"
-            className=" border border-solid border-black"
+            className=" mx-2  p-1 px-1 border-2 border-solid border-gray-300 rounded-md"
             value={searchText}
             onChange={(e) => setsearchText(e.target.value)}
           />
@@ -77,23 +79,21 @@ const Body = () => {
 
         </div>
         <div className="search m-4 p-4 flex items-center">
-        <label className="font-bold">Username:</label>
-        <input className=" mx-2 px-1 border border-solid border-black"
+        <label className="font-semibold mx-2  p-1 px-1 border-1 border-solid border-gray-300 rounded-md text-white bg-red-500">Username</label>
+        <input className=" mx-1  p-1 px-1 border-2 border-solid border-gray-300 rounded-md"
+        placeholder="Enter Username......"l
         value={loggedinuser}
         onChange={(e)=>{setuserName(e.target.value)}} >
 
         </input>
-        <button onClick={()=>{
-          
-        }
-        }>Enter</button>
+        
 
         </div>
 
         
       </div>
       <div className="mx-40 flex flex-wrap  ">
-        {filterednewList.map((restaurant) => (
+        {filterednewList?.map((restaurant) => (
           <Link
             key={restaurant.info.id}
             to={"/restaurants/" + restaurant?.info?.id}>

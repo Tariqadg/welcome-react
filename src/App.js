@@ -22,7 +22,7 @@ useEffect(()=>{
 );
 
 return(
-<div>
+<div >
    <userContext.Provider  value={{loggedinuser:userName,setuserName}}>
    <Header />
    <Outlet/>
@@ -54,6 +54,11 @@ const appRouter=createBrowserRouter([
             path: "/restaurants/:resid",
             element:<RestaurantMenu/>,
          },
+         {
+            path: "/login",
+            element:<Login/>,
+         },
+         
       ],
       errorElement:<Error/>,
      

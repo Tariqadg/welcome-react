@@ -2,9 +2,9 @@ import { useState } from "react"
 import ItemList from "./ItemList"
 
 const RestaurantCategory=({data,showItems,setShowIndex})=>{
-
+    const [isOpen1, setIsOpen1] = useState(showItems);
      const handleclick=()=>(
-        setShowIndex()
+        setIsOpen1((prev)=>!prev)
     
        )
    
@@ -14,9 +14,10 @@ const RestaurantCategory=({data,showItems,setShowIndex})=>{
             <div className="flex justify-between cursor-pointer  " onClick={handleclick}>
             <span className="font-bold text-lg ">{data.title} ({data?.itemCards?.length})</span>
             <span>⬇️</span>  
+           
             </div>
             <div>
-            {showItems &&<ItemList  items={data?.itemCards}/> }   
+            {isOpen1 &&(<ItemList  items={data?.itemCards}/> )}   
             </div> 
         </div>
        

@@ -15,10 +15,13 @@ class About extends React.Component {
   render() {
     console.log("parent render");
     return (
-      <div className="mx-[600px] my-[30px] bg-gray-100 w-[600px] h-[400px] font-medium border border-solid border-zinc-500">
-        <h1 className=" text-center font-extrabold text-4xl">About Us</h1>
+      
+      <div className="absolute w-3/12 bg-black  p-12 my-20 m-auto right-0 left-0 text-white bg-opacity-70 rounded-lg">
+        
+        <h1 className=" text-center font-bold text-2xl p-2 ">About Us</h1>
         {/* <User name={"Tariq Ahmad function"} location={"Lucknow"}/> */}
-        <UserClass name={"Tariq Ahmad class"} location={"Lucknow"} />
+        <p></p>
+        <UserClass  name={"Tariq Ahmad class"} location={"Lucknow"} />
       </div>
     );
   }
